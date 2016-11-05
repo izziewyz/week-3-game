@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Psychic Game</title>
+
+	<!-- Added link to the jQuery Library -->
+  <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+
+  <!-- Added a link to Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+
+
+<div class="jumbotron">
+    <h1 class="text-center">Letter Guesser</h1>
+    <h2 class="text-center">See if you can guess the letter the computer is thinking of!</h2>
+  </div>
+
+
+
+	<p>Wins:<div id=wins> </div></p>
+	
+	<p>Losses:<div id=loss></div></p>
+	
+	<p>guessleft:<div id=guessesleft></div></p>
+	
+	<p>Your Guesses So Far:<div id=gussessofar></div></p>
+
+
+
+<script type="text/javascript">
+// make an array for computer choice contain 26 letters
+
+	var wins = 0;
+	var Loss = 0;
+	var guessesleft = 9;
+	var gussessofar = [];
+    var letters = ["a","b","c","d","e","f","g","h", ];
+
+	// computer choice
+     
+	var computerChoices = letters[Math.floor(Math.random() * letters.length)];
+
+	// user choice
+	document.onkeyup = function() {
+	// when user choice a key
+	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+
+	guessesleft--;
+
+	gussessofar.push(userGuess);
+
+	if (userGuess === computerChoices) {
+		wins++;
+	} else {
+		if (guessesleft === 0){
+			Loss++;
+		}
+	}
+
+	console.log(userGuess);
+
+    document.querySelector("#wins").innerHTML = wins;
+    document.querySelector("#loss").innerHTML = Loss;
+    document.querySelector("#guessesleft").innerHTML = guessesleft;
+    document.querySelector("#gussessofar").innerHTML = gussessofar.join(",");
+    
+
+}
+	
+
+//     var computerGuess = computerChoices
+
+// 		// It tests to determine if the computer or the user won the round and then increments 
+// 		if (userGuess){
+// 			if (userGuess == computerGuess) {
+// 			wins++;
+// 			}else {
+// 			guessesleft--;
+// 			}
+
+// // Taking the tallies and displaying them in HTML
+		
+
+// 		// Placing the html into the game ID
+// 		console.log(userGuess);
+
+		
+
+
+
+</script>
+   
+
+</body>
+</html>
